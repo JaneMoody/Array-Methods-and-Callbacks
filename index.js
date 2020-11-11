@@ -5,7 +5,7 @@ import { fifaData } from "./fifa.js";
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Investigate the data above. Practice accessing data by console.log-ing the following pieces of data note, you may want to filter the data first 😉*/
 
-const finals = fifiaData.filter(function (item) {
+const finals = fifaData.filter(function (item) {
   return item.Year === 2014 && item.Stage === "Final";
 });
 console.log(finals);
@@ -32,21 +32,43 @@ Create a function called  getFinals that takes `data` as an argument and returns
 
 function getFinals(data) {
   let finalsInfo = [];
-  for (let i = 0; i < fifaData; i++) {
-    if (fifaData[i]["Stage"] == finals) {
-      finalsInfo.push(fifaData[i]["Stage"]);
+  data.filter((item) => {
+    if (item.Stage === "Final") {
+      return finalsInfo.push(item);
     }
-  }
+  });
+  return finalsInfo;
 }
-console.log(getFinals(data));
+console.log(getFinals(fifaData));
+
+// cityData.forEach(function(item){
+//   return lowerCase.push(item.state.toLowerCase());
+//  });
+
+//  console.log(lowerCase);
+
+// let finalsInfo = [];
+// fifaData.forEach(function (item) {
+//   return finalsInfo.push(`${item.Stage}`);
+// });
+
+// console.log(finalsInfo);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Implement a higher-order function called `getYears` that accepts the callback function `getFinals`, and returns an array called `years` containing all of the years in the dataset */
 
-function getYears(getFinals) {
-  let dataYears = [];
-  return;
+function getYears(callback) {
+  const years = [];
+  callback.forEach(function (item) {
+    years.push(item.Year);
+  });
+  return years;
 }
+console.log(getYears(getFinals));
+// let years = function getYears(getFinals) {
+//   return years;
+// };
+// console.log(years);
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Implement a higher-order function called `getWinners`, that accepts the callback function `getFinals()` and determine the winner (home or away) of each `finals` game. Return the name of all winning countries in an array called `winners` */
